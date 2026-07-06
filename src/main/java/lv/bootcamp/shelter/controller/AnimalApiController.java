@@ -15,9 +15,6 @@ import java.util.List;
 /**
  * REST controller for shelter animal endpoints.
  * Returns JSON — does not render HTML pages.
- *
- * Students will add a separate AnimalPageController in Task A (Thymeleaf)
- * and OpenAPI annotations in Task B (Springdoc).
  */
 @RequiredArgsConstructor
 @RestController

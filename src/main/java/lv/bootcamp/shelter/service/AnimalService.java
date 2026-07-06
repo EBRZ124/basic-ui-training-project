@@ -6,6 +6,7 @@ import lv.bootcamp.shelter.dto.AnimalResponse;
 import lv.bootcamp.shelter.form.AnimalForm;
 import lv.bootcamp.shelter.model.Animal;
 import lv.bootcamp.shelter.model.AnimalStatus;
+import lv.bootcamp.shelter.model.AnimalType;
 import lv.bootcamp.shelter.repository.AnimalRepository;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,10 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class AnimalService {
+
+    private static final String IMAGES_BASE_PATH = "/images/";
+    private static final String ANIMAL_IMAGES_PATH = IMAGES_BASE_PATH + "animals/";
+    private static final String FALLBACK_IMAGES_PATH = IMAGES_BASE_PATH + "fallback/";
 
     private final AnimalRepository animalRepository;
 
@@ -68,9 +73,9 @@ public class AnimalService {
         );
         }
 
-        private AnimalResponse createAnimal(
+    private AnimalResponse createAnimal(
             String name,
-            lv.bootcamp.shelter.model.AnimalType type,
+            AnimalType type,
             String breed,
             Integer age,
             String description,
@@ -85,9 +90,43 @@ public class AnimalService {
             age,
             description,
                 AnimalStatus.AVAILABLE,
-            imageUrl
+                resolveImageUrl(imageUrl, type)
         );
         return toResponse(animalRepository.save(animal));
+    }
+
+    private String resolveImageUrl(String imageUrl, AnimalType type) {
+        if (imageUrl == null || imageUrl.isBlank()) {
+            return fallbackImageFor(type);
+        }
+
+        String trimmed = imageUrl.trim();
+        if (trimmed.startsWith("http://") || trimmed.startsWith("https://") || trimmed.startsWith("data:")) {
+            return trimmed;
+        }
+
+        if (trimmed.startsWith("/")) {
+            return trimmed;
+        }
+
+        return ANIMAL_IMAGES_PATH + sanitizeFilename(trimmed);
+    }
+
+    private String sanitizeFilename(String value) {
+        String normalized = value.replace('\\', '/');
+        int lastSlash = normalized.lastIndexOf('/');
+        if (lastSlash >= 0) {
+            return normalized.substring(lastSlash + 1);
+        }
+        return normalized;
+    }
+
+    private String fallbackImageFor(AnimalType type) {
+        return switch (type) {
+            case CAT -> FALLBACK_IMAGES_PATH + "fallback-cat.jpg";
+            case DOG -> FALLBACK_IMAGES_PATH + "fallback-dog.jpg";
+            case OTHER -> FALLBACK_IMAGES_PATH + "fallback-other.jpg";
+        };
     }
 
     private AnimalResponse toResponse(Animal animal) {
