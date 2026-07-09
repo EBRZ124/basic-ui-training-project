@@ -1,0 +1,32 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<style>
+    body { font-family: sans-serif; max-width: 860px; margin: 2rem auto; padding: 0 1rem; }
+    h1 { border-bottom: 2px solid #333; padding-bottom: 0.4rem; }
+    h2 { margin-top: 2rem; }
+    ul { list-style: none; padding: 0; }
+    li { border: 1px solid #ddd; border-radius: 6px; padding: 1rem; margin-bottom: 1rem; display: flex; gap: 1rem; align-items: flex-start; }
+    li img { width: 120px; height: 80px; object-fit: cover; border-radius: 4px; }
+    .info { flex: 1; }
+    .status-available { color: green; font-weight: bold; }
+    .status-adopted   { color: #999;  font-weight: bold; }
+    form { display: grid; gap: 0.5rem; max-width: 480px; margin-top: 1rem; }
+    label { font-weight: bold; }
+    input, select, textarea { padding: 0.4rem; border: 1px solid #ccc; border-radius: 4px; width: 100%; box-sizing: border-box; }
+    button { padding: 0.6rem 1.2rem; background: #2563eb; color: white; border: none; border-radius: 4px; cursor: pointer; width: fit-content; }
+    button:hover { background: #1d4ed8; }
+</style>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/animals">All animals</a>
+        <a href="/animals/new">Add an animal</a>
+    </nav>
+
+<main>
+    <h1>Welcome to the Shelter!</h1>
+    <p>In our shelter, we care for all kinds of pets - cats, dogs, rabbits, and many more.</p>
+    <p>We deeply care they get a proper home and caretakers.</p>
+    <p>Browse our available animals or register a newly arriving one</p>
+</main>
+</body>
+</html>
