@@ -16,11 +16,7 @@
     button:hover { background: #1d4ed8; }
 </style>
 <body>
-    <nav>
-        <a href="/">Home</a>
-        <a href="/animals">All animals</a>
-        <a href="/animals/new">Add an animal</a>
-    </nav>
+<div th:replace="~{fragments/nav :: nav}"></div>
 
 <main>
     <h1>Welcome to the Shelter!</h1>

@@ -39,4 +39,9 @@ public class AnimalPageController {
         animalService.createFromForm(form);
         return "redirect:/animals";
     }
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
 }
