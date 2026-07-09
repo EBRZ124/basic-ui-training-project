@@ -1,0 +1,37 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Shelter — Log In</title>
+    <style>
+        body { font-family: sans-serif; max-width: 400px; margin: 4rem auto; padding: 0 1rem; }
+        h1 { color: #2563eb; }
+        .subtitle { color: #666; margin-bottom: 2rem; }
+        form { display: grid; gap: 0.75rem; }
+        label { font-weight: bold; }
+        input { padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; }
+        button { padding: 0.6rem 1.2rem; background: #2563eb; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #1d4ed8; }
+        .error { background: #fee2e2; color: #b91c1c; padding: 0.6rem 1rem; border-radius: 4px; margin-bottom: 1rem; }
+    </style>
+</head>
+<body>
+
+<h1>Very Epic Shelter Sign-In</h1>
+<p class="subtitle">Log in to add or adopt animals.</p>
+
+<div class="error" th:if="${param.error}">
+    Invalid username or password.
+</div>
+
+<form th:action="@{/login}" method="post">
+    <label for="username">Username</label>
+    <input id="username" name="username" type="text" required autofocus>
+
+    <label for="password">Password</label>
+    <input id="password" name="password" type="password" required>
+
+    <button type="submit">Log in</button>
+</form>
+
+</body>
+</html>

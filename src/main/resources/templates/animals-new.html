@@ -38,9 +38,6 @@
   <title>Shelter — Add Animal</title>
   <style>
     body { font-family: sans-serif; max-width: 760px; margin: 2rem auto; padding: 0 1rem; }
-    nav { background: #f1f5f9; padding: 0.6rem 1rem; border-radius: 6px; margin-bottom: 1.5rem; }
-    nav a { margin-right: 1rem; text-decoration: none; color: #2563eb; }
-    nav a:hover { text-decoration: underline; }
     h1 { border-bottom: 2px solid #333; padding-bottom: 0.4rem; }
     form { display: grid; gap: 0.5rem; max-width: 480px; margin-top: 1rem; }
     label { font-weight: bold; }
@@ -54,11 +51,7 @@
 
   <!-- Navigation — same on every page -->
   <!-- ADMIN-only: only render the "Add animal" link when isAdmin is true -->
-  <nav>
-    <a href="/">Home</a>
-    <a href="/animals">All animals</a>
-    <a href="/animals/new">Add animal</a>
-  </nav>
+  <div th:replace="~{fragments/nav :: nav}"></div>
 
   <main>
     <h1>Add a new animal</h1>
